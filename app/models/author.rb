@@ -1,5 +1,5 @@
 class Author < ActiveRecord::Base
   has_many :books
-  has_many :authors_genres
-  has_many :genres, through: :authors_genres
+  has_many :author_genres
+  has_many :genres, through: :author_genres
 end

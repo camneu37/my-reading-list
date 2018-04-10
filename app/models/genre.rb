@@ -1,6 +1,6 @@
 class Genre < ActiveRecord::Base
-  has_many :books_genres
-  has_many :books, through: :books_genres
-  has_many :authors_genres
-  has_many :authors, through: :authors_genres
+  has_many :book_genres
+  has_many :books, through: :book_genres
+  has_many :author_genres
+  has_many :authors, through: :author_genres
 end
