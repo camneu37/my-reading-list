@@ -1,6 +1,6 @@
 class CreateAuthorsGenres < ActiveRecord::Migration[5.2]
   def change
-    create_table :authors_genres do |t|
+    create_table :author_genres do |t|
       t.integer :author_id
       t.integer :genre_id
     end
