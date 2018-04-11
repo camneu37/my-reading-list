@@ -4,5 +4,8 @@ class Book < ActiveRecord::Base
   has_many :users, through: :book_users
 
   extend Slugifiable::ClassMethods
-  include Slugifiable::InstanceMethods
+
+  def slug
+    self.title.downcase.gsub(" ", "-")
+  end
 end
