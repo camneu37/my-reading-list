@@ -32,7 +32,11 @@ class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    erb :'users/show'
+    if current_user.username == @user.username
+      erb :'users/show'
+    else
+      redirect "/users/#{current_user.slug}"
+    end
   end
 
 end
