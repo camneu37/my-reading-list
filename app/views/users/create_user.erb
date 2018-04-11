@@ -1,3 +1,4 @@
+<% if !logged_in? %>
 <h3>Please enter your information below to create your user account.</h3>
 <form action="/signup" method="post">
   <label for="name">Name:</label>
@@ -8,3 +9,4 @@
     <input type="password" id="password" name="password" placeholder="password" required><br><br>
   <input type="submit" value="Create User">
 </form>
+<% end %>
