@@ -7,11 +7,22 @@ class UsersController < ApplicationController
   post '/signup' do
     user = User.create(name: params[:name], username: params[:username], password: params[:password])
     flash[:message] = "Successfully created user account."
-    redirect "/users/#{user.username.slug}"
+    session[:user_id] = user.id
+    redirect "/users/#{user.slug}"
   end
 
   get '/login' do
     erb :'users/login'
+  end
+
+  post '/login' do
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/users/#{user.slug}"
+    else
+      redirect '/'
+    end
   end
 
   get '/users/:slug' do
