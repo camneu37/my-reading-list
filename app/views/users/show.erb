@@ -1,0 +1,10 @@
+<h2>Welcome, <%=@user.name%>!</h2>
+
+<h3>Your reading list:</h3>
+  <ul>
+    <% @user.books.each do |book|%>
+    <li><a href="/books/<%=book.slug%>"><%= book.title%></a> by <a href="/authors/<%=book.author.slug%>"><%=book.author.name%></a></li>
+    <% end %>
+  </ul>
+
+<p>Would you like to browse the lists of all <a href="/books">books</a> or <a href="/authors">authors</a> entered on the My Reading List site?</p>

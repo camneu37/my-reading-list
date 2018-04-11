@@ -10,4 +10,9 @@ class UsersController < ApplicationController
     redirect "/users/#{user.username.slug}"
   end
 
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
+  end
+
 end
