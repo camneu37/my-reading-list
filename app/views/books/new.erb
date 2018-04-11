@@ -1,11 +1,11 @@
-<h3>Please fill in the details for the book you'd like to add and it will be added to the main library as well as to your personal reading list!</h3>
+<p>Please fill in the details for the book you'd like to add and it will be added to the main library as well as to your personal reading list!</p>
 
 <form action="/books" method="/post">
   <label for="title">Title:</label>
-    <input type="text" id="name" name="book[title]" placeholder="Book's Title">
-  <label for="summary">Brief Summary:</label>
-    <input type="textarea" id="summary" name="book[summary]" placeholder="Brief summary of the book...">
+    <input type="text" id="name" name="book[title]" placeholder="Book's Title"><br><br>
   <label for="author_name">Author's Name:</label>
-    <input type="text" id="author_name" name="author[name]" placeholder="Author's Name">
+    <input type="text" id="author_name" name="author[name]" placeholder="Author's Name"><br><br>
+  <label for="summary">Brief Summary:</label><br>
+    <textarea name="book[summary]" rows="5" cols="30" placeholder="Write a one line description of the book..."></textarea><br><br>
   <input type="submit" value="Add Book">
 </form>
