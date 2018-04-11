@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     user = User.create(name: params[:name], username: params[:username], password: params[:password])
-    flash[:message] = "Successfully created user account."
+    flash[:message] = "You've successfully created your account!"
     session[:user_id] = user.id
     redirect "/users/#{user.slug}"
   end
