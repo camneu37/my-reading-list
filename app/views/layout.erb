@@ -18,9 +18,7 @@
       <%= yield %>
 
       <% if logged_in?%>
-      <form action="/logout" method="post">
-        <input type="submit" value="Log Out">
-      </form>
+      <a href="/logout">Log Out</a>
       <% end %>
 
   </body>
