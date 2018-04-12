@@ -19,7 +19,7 @@ class BooksController < ApplicationController
 
   post '/books' do
     author = Author.create(params[:author])
-    book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id]
+    book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id])
     user = User.find_by_id(session[:user_id])
     user_books = user.book_ids << book.id
     user.update(book_ids: user_books)
@@ -29,6 +29,7 @@ class BooksController < ApplicationController
 
   get '/books/:slug' do
     if logged_in?
+      @book = Book.find_by_slug(params[:slug])
       erb :'books/show'
     else
       redirect '/'
