@@ -45,8 +45,16 @@ class BooksController < ApplicationController
     end
   end
 
-
-  ##DO POST BOOKS ROUTE NEXT TO HANDLE CREATING A NEW BOOK THE USER ADDED!
-  #Need google how to make validations for user input to ensure that bad data (aka duplicate data) isn't added. Is there a smoother way than doing find_by and each of the attributes before creating?
+  get '/books/:slug/add' do
+    if logged_in?
+      @book = Book.find_by_slug(params[:slug])
+      @book.users << current_user
+      @book.save
+      flash[:message] = "#{@book.title} has been added to your Reading List."
+      redirect "/users/#{current_user.slug}"
+    else
+      redirect '/'
+    end
+  end
 
 end

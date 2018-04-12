@@ -3,7 +3,7 @@
 <p><%= @book.summary %></p><br>
 
 <% if !@book.user_ids.include?(current_user.id) %>
-  <a href="/users/add-book">Add Book to your Reading List</a><br>
+  <a href="/books/<%=@book.slug%>/add">Add Book to your Reading List</a><br>
 <% end %>
 
 <% if current_user.id == @book.creator_id %>
