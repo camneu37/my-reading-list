@@ -3,9 +3,13 @@
 <p><%= @book.summary %></p><br>
 
 <% if !@book.user_ids.include?(current_user.id) %>
-  <a href="/users/add-book">Add Book to your Reading List</a><br><br>
+  <a href="/users/add-book">Add Book to your Reading List</a><br>
 <% end %>
 
 <% if current_user.id == @book.creator_id %>
-  <p><a href="/books/<%=@book.slug%>/edit">Edit Book</a> | <a href="/books/<%=@book.slug%>/delete>">Delete Book from your Reading List</a><br><br>
+  <p><a href="/books/<%=@book.slug%>/edit">Edit Book</a><br>
+<% end %>
+
+<% if current_user.books.include?(@book) %>
+  <a href="/books/<%=@book.slug%>/delete">Delete Book from your Reading List</a><br><br>
 <% end %>
