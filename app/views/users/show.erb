@@ -1,10 +1,8 @@
-<h2>Welcome, <%=@user.name%>!</h2>
-
-
 <% if @user.books.empty? %>
-  <p>Oh no! It looks like you don't have any books added to your reading list yet.<p>
+  <h2>Welcome, <%=@user.name%>!</h2>
+  <p>It looks like you don't have any books added to your reading list yet.<p>
 <% else %>
-  <h3>Your reading list:</h3>
+  <h2><%=@user.name%>'s reading list:</h2>
     <ul>
       <% @user.books.each do |book|%>
       <li><a href="/books/<%=book.slug%>"><%= book.title%></a> by <a href="/authors/<%=book.author.slug%>"><%=book.author.name%></a></li>
