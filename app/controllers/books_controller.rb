@@ -20,9 +20,7 @@ class BooksController < ApplicationController
   post '/books' do
     author = Author.create(params[:author])
     book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id])
-    user = User.find_by_id(session[:user_id])
-    user_books = user.book_ids << book.id
-    user.update(book_ids: user_books)
+    book.update(user_ids: current_user.id)
     flash[:message] = "You've successfully created a new book. It's been added to the main library as well as your personal reading list!"
     redirect "/books/#{book.slug}"
   end

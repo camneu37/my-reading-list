@@ -1,6 +1,6 @@
 <h3><%= @book.title %></h3>
-<h3><a href="/authors/<%=@book.author.slug%>"><%= @book.author.name %></a></h3>
-<p><%= @book.summary %></p>
+<h5>By <a href="/authors/<%=@book.author.slug%>"><%= @book.author.name %></a></h5>
+<p><%= @book.summary %></p><br>
 
 <% if !@book.user_ids.include?(current_user.id) %>
   <a href="/users/add-book">Add Book to your Reading List</a><br><br>
