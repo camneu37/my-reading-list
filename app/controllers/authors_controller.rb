@@ -9,4 +9,12 @@ class AuthorsController < ApplicationController
     end
   end
 
+  get '/authors/:slug' do
+    if logged_in?
+      @author = Author.find_by_slug(params[:slug])
+      erb :'authors/show'
+    else
+      redirect '/'
+    end
+  end
 end
