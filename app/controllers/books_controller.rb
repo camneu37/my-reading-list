@@ -27,10 +27,10 @@ class BooksController < ApplicationController
   end
 
   post '/books' do
-    if params[:author].has_key?("name")
-      author = Author.find_or_create_by(name: params[:author][:name])
-    else
+    if params[:author][:id] && params[:author][:id] != "N/A"
       author = Author.find_by_id(params[:author][:id])
+    else
+      author = Author.find_or_create_by(name: params[:author][:name])
     end
     book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id])
     book.update(user_ids: current_user.id)
