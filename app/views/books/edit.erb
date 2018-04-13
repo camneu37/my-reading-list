@@ -1,0 +1,10 @@
+<form action="/books/<%=@book.slug%>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <label for="title">Title:</label>
+    <input type="text" id="name" name="book[title]" value="<%=@book.title%>"><br><br>
+  <label for="author_name">Author's Name:</label>
+    <input type="text" id="author_name" name="author[name]" value="<%=@book.author.name%>"><br><br>
+  <label for="summary">Brief Summary:</label><br>
+    <textarea name="book[summary]" rows="5" cols="30"><%=@book.summary%></textarea><br><br>
+  <input type="submit" value="Edit Book">
+</form>
