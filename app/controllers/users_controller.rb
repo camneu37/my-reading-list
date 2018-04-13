@@ -9,10 +9,15 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    user = User.create(name: params[:name], username: params[:username], password: params[:password])
-    flash[:message] = "You've successfully created your account!"
-    session[:user_id] = user.id
-    redirect "/users/#{user.slug}"
+    if User.find_by(username: params[:username])
+      flash[:message] = "Username already exists. Please pick a new username or go to login if that is your account."
+      redirect '/signup'
+    else
+      user = User.create(name: params[:name], username: params[:username], password: params[:password])
+      flash[:message] = "You've successfully created your account!"
+      session[:user_id] = user.id
+      redirect "/users/#{user.slug}"
+    end
   end
 
   get '/login' do

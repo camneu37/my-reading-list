@@ -11,7 +11,7 @@ class BooksController < ApplicationController
 
   get '/books/new' do
     if logged_in?
-      erb :'books/new'
+      erb :'books/create_book'
     else
       redirect '/'
     end
@@ -20,7 +20,7 @@ class BooksController < ApplicationController
   get '/books/new-from-author/:slug' do
     if logged_in?
       @author = Author.find_by_slug(params[:slug])
-      erb :'/books/new_from_author'
+      erb :'/books/create_book_from_author'
     else
       redirect '/'
     end
