@@ -43,6 +43,14 @@ class BooksController < ApplicationController
     end
   end
 
+  patch '/books/:slug' do
+    book = Book.find_by_slug(params[:slug])
+    author = Author.find_or_create_by(params[:author])
+    book.update(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id)
+    flash[:message] = "You've successfully updated the entry for #{book.title}!"
+    redirect "/books/#{book.slug}"
+  end
+
   get '/books/:slug/delete' do
     if logged_in?
       @book = Book.find_by_slug(params[:slug])
