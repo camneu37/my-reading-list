@@ -1,0 +1,7 @@
+<h3>Please click on an author below to see all of their books.</h3>
+
+<ul>
+  <% @authors.each do |a| %>
+    <li><a href="/authors/a.slug%>"><%=a.name%></a></li>
+  <% end %>
+</ul>
