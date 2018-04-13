@@ -34,6 +34,15 @@ class BooksController < ApplicationController
     end
   end
 
+  get '/books/:slug/edit' do
+    @book = Book.find_by_slug(params[:slug])
+    if logged_in? && @book.creator_id == current_user.id
+      erb :'/books/edit'
+    else
+      redirect "/books/#{@book.slug}"
+    end
+  end
+
   get '/books/:slug/delete' do
     if logged_in?
       @book = Book.find_by_slug(params[:slug])
