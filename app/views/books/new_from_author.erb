@@ -1,0 +1,11 @@
+<h3>Add a new book by <%=@author.name%></h3>
+
+<p>Please fill in the details below and the book will be added to the main library as well as to your personal reading list!</p>
+
+<form action="/books" method="post">
+  <label for="title">Title:</label>
+    <input type="text" id="name" name="book[title]" placeholder="Book's Title"><br><br>
+  <label for="summary">Brief Summary:</label><br>
+    <textarea name="book[summary]" rows="5" cols="30" placeholder="Write a one line description of the book..."></textarea><br><br>
+  <input type="submit" value="Add Book">
+</form>

@@ -17,12 +17,18 @@ class BooksController < ApplicationController
     end
   end
 
-  get '/books/new-from-author' do
-    
+  get '/books/new-from-author/:slug' do
+    if logged_in?
+      @author = Author.find_by_slug(params[:slug])
+      erb :'/books/new_from_author'
+    else
+      redirect '/'
+    end
   end
 
   post '/books' do
-    author = Author.create(params[:author])
+    binding.pry
+    author = Author.find_by(name: params[:author])
     book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id])
     book.update(user_ids: current_user.id)
     flash[:message] = "You've successfully created a new book. It's been added to the main library as well as your personal reading list!"
