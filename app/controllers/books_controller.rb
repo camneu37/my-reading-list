@@ -27,8 +27,11 @@ class BooksController < ApplicationController
   end
 
   post '/books' do
-    binding.pry
-    author = Author.find_by(name: params[:author])
+    if params[:author].has_key?("name")
+      author = Author.find_or_create_by(name: params[:author][:name])
+    else
+      author = Author.find_by_id(params[:author][:id])
+    end
     book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id])
     book.update(user_ids: current_user.id)
     flash[:message] = "You've successfully created a new book. It's been added to the main library as well as your personal reading list!"

@@ -6,6 +6,7 @@ class Book < ActiveRecord::Base
   extend Slugifiable::ClassMethods
 
   def slug
-    self.title.downcase.gsub(" ", "-")
+    self.title.downcase.gsub(/[^a-z1-9]+/, '-').chomp('-')
   end
+
 end
