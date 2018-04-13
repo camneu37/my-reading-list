@@ -17,6 +17,10 @@ class BooksController < ApplicationController
     end
   end
 
+  get '/books/new-from-author' do
+    
+  end
+
   post '/books' do
     author = Author.create(params[:author])
     book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id])
