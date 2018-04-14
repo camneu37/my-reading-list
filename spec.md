@@ -1,20 +1,20 @@
 # Specifications for the Sinatra Assessment
 
 Specs:
-- [x] Use Sinatra to build the app
-- [ ] Use ActiveRecord for storing information in a database
-- [ ] Include more than one model class (list of model class names e.g. User, Post, Category)
-- [ ] Include at least one has_many relationship on your User model (x has_many y, e.g. User has_many Posts)
-- [ ] Include at least one belongs_to relationship on another model (x belongs_to y, e.g. Post belongs_to User)
-- [ ] Include user accounts
-- [ ] Ensure that users can't modify content created by other users
-- [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
-- [ ] Include user input validations
-- [ ] Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Use Sinatra to build the app - Requirement met by having my controllers inherit from Sinatra::Base.
+- [X] Use ActiveRecord for storing information in a database - Requirement met by having my models inherit from ActiveRecord::Base and with the connection between the app and the sqlite database (as defined in the environment file).
+- [X] Include more than one model class (list of model class names e.g. User, Post, Category) - Requirement met as I have Author, Book, and User models.
+- [X] Include at least one has_many relationship on your User model (x has_many y, e.g. User has_many Posts) - Requirement met as an Author has_many books. I also incorporated a many to many relationship between the User and Book models, as both of these models can have many of and belong to many of the other model.
+- [X] Include at least one belongs_to relationship on another model (x belongs_to y, e.g. Post belongs_to User) - Requirement met as a Book belongs_to an Author.
+- [X] Include user accounts - Requirement met as I have a User model for creation of individual user accounts.
+- [X] Ensure that users can't modify content created by other users - Requirement met as I've added a 'creator_id' attribute to the Book model (books are the only content a user can create in the app), so that only the user who created a book can edit the book. As the same book can belong to many users, I could not just use the 'user_id' attribute to limit the edit abilities.
+- [X] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying - Requirement met as I have routes for all CRUD actions in the books controller. A note on the delete action - I have written the application so that a user can only delete a book from their personal reading list but not from the app book library. As one book can belong to many users (i.e. be added to their personal reading list), I don't want the creator to be able to entirely delete a book at will and thus remove it from other users reading lists. Only the 'admin' user can delete books from the library entirely.
+- [X] Include user input validations - Requirement met utilizing 'validates_presence_of :name, :username, and :password' in the User model, so that a user cannot be created without having the values for all 3 of these attributes. I've also added the 'required' tag in the views so that a user cannot submit the create_user form without filling in all three fields. In terms of validating the actual data input by the user, for user creation, the 'post /signup' route checks to ensure a username is unique before creating a new user object. I have similar checks on Authors and Books - when forms are submitted that would allow for creation of a new object from either of these models, I've utilized either the 'find_by' or 'find_or_create_by' methods to check if objects exists with the name/title entered by the user before creating a new book or author object.
+- [X] Display validation failures to user with error message (example form URL e.g. /posts/new) - Requirement met for both user and book creation. In the users controller post '/signup' route, if the username entered into the signup form is not unique, the user is rerouted to the signup page and a message is displayed alerting them that the username already exists and prompts the user to pick a new one or go to the login page if that is their username and thus they already have an account. In similar fashion, in the books controller 'post /books' route, if it is determines that a book already exist with the title input by the user, then the user redirected to the show page for the book with that title and a message appears on the screen alerting the user that this book already exists in our library and they can add it to their reading list here.
+- [X] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code - Requirement met as I've added a README with a description and install instructions. I've added to the root director of the app a contributors guide (CONTRIBUTING.md), a code of conduct (CONDUCT.md), and the license (LICENSE.md).
 
 Confirm
-- [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
+- [X] You have a large number of small Git commits
+- [X] Your commit messages are meaningful
+- [X] You made the changes in a commit that relate to the commit message
+- [X] You don't include changes in a commit that aren't related to the commit message
