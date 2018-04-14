@@ -27,7 +27,10 @@ class BooksController < ApplicationController
   end
 
   post '/books' do
-    if params[:author][:id] && params[:author][:id] != "N/A"
+    if params[:author][:id].empty? && params[:author][:name].empty?
+      flash[:message] = "Uh oh! It seems you forgot to add the Author's information so we could not add your book. Please try again and be sure to select the author from the dropdown or enter their name if they do not already exist. Thank you!"
+      redirect '/books/new'
+    elsif params[:author][:id] && !params[:author][:id].empty?
       author = Author.find_by_id(params[:author][:id])
     else
       author = Author.find_or_create_by(name: params[:author][:name])
