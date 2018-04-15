@@ -1,6 +1,6 @@
-<h3>Please click on an author below to see all of their books.</h3>
+<h3 class="welcome">Please click on an author below to see all of their books.</h3>
 
-<ul>
+<ul class="options_lists">
   <% @authors.each do |a| %>
     <li><a href="/authors/<%=a.slug%>"><%=a.name%></a></li>
   <% end %>
