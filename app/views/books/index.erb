@@ -1,9 +1,9 @@
-<h3>Books available to add to your reading list:</h3>
+<h3 class="welcome">Books available to add to your reading list:</h3>
 
-<ul>
+<ul class="options_lists">
   <% @books.each do |book| %>
     <li><a href="/books/<%=book.slug%>"><%=book.title%></a> by <a href="/authors/<%=book.author.slug%>"><%=book.author.name%></a></li>
   <% end %>
 </ul>
 
-<p>If the book you'd like to add does not exist above, please feel free to add it <a href="/books/new">here</a>.</p>
+<p class="instructions">If the book you'd like to add does not exist above, please feel free to add it <a href="/books/new">here</a>.</p>
