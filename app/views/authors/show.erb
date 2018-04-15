@@ -1,9 +1,9 @@
-<h3>Books by <%=@author.name%>:</h3>
+<h3 class="welcome">Books by <%=@author.name%>:</h3>
 
-<ul>
+<ul class="options_lists">
   <% @author.books.each do |b| %>
     <li><a href="/books/<%=b.slug%>"><%=b.title%></a></li>
   <%end%>
 </ul>
 
-<p>Don't see the book you're interested in by this author? Feel free to add it <a href="/books/new-from-author/<%=@author.slug%>">here</a>.
+<p class="instructions">Don't see the book you're interested in by this author? Feel free to add it <a href="/books/new-from-author/<%=@author.slug%>">here</a>.
