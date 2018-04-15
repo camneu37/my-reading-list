@@ -85,8 +85,10 @@ class BooksController < ApplicationController
   end
 
   get '/books/:slug/add' do
-    if logged_in?
-      @book = Book.find_by_slug(params[:slug])
+    @book = Book.find_by_slug(params[:slug])
+    if logged_in? && current_user.username == "admin"
+      @book.destroy
+    elsif logged_in?
       @book.users << current_user
       @book.save
       flash[:message] = "#{@book.title} has been added to your Reading List."

@@ -13,3 +13,7 @@
 <% if current_user.books.include?(@book) %>
   <a href="/books/<%=@book.slug%>/delete">Delete Book from your Reading List</a><br><br>
 <% end %>
+
+<% if current_user.username == "admin" %>
+  <a href="/books/<%=@book.slug%>/delete">Delete book entry from application</a><br><br>
+<% end %>
