@@ -1,16 +1,16 @@
 <% if !logged_in? %>
-<h3>Please enter your information below to create your user account.</h3>
+<h3 class="welcome">Please enter your information below to create your user account.</h3>
 <form action="/signup" method="post">
-  <label for="name">Name:</label>
+  <label class="input_labels" for="name">Name:</label>
     <input type="text" id="name" name="name" placeholder="name" required><br><br>
-  <label for="username">Username:</label>
+  <label class="input_labels" for="username">Username:</label>
     <input type="text" id="username" name="username" placeholder="username" required><br><br>
-  <label for="password">Password:</label>
+  <label class="input_labels" for="password">Password:</label>
     <input type="password" id="password" name="password" placeholder="password" required><br><br>
-  <input type="submit" value="Create User">
+  <input class="submit_button" type="submit" value="Create User">
 </form>
 
 <br>
 
-<p>If you already have an account, please <a href="/login">Log In</a>.</p>
+<p class="instructions">If you already have an account, please <a href="/login">Log In</a>.</p>
 <% end %>
