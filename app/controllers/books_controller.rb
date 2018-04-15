@@ -74,8 +74,12 @@ class BooksController < ApplicationController
   end
 
   get '/books/:slug/delete' do
-    if logged_in?
-      @book = Book.find_by_slug(params[:slug])
+    @book = Book.find_by_slug(params[:slug])
+    if logged_in? && current_user.username == "admin"
+      @book.destroy
+      flash[:message] = "#{@book.title} has been deleted from the application."
+      redirect "/users/#{current_user.slug}"
+    elsif logged_in?
       current_user.books.delete(@book)
       flash[:message] = "#{@book.title} has been removed from your Reading List."
       redirect "/users/#{current_user.slug}"
@@ -85,10 +89,8 @@ class BooksController < ApplicationController
   end
 
   get '/books/:slug/add' do
-    @book = Book.find_by_slug(params[:slug])
-    if logged_in? && current_user.username == "admin"
-      @book.destroy
-    elsif logged_in?
+    if logged_in?
+      @book = Book.find_by_slug(params[:slug])
       @book.users << current_user
       @book.save
       flash[:message] = "#{@book.title} has been added to your Reading List."
