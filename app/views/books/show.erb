@@ -6,7 +6,7 @@
   <a href="/books/<%=@book.slug%>/add">Add Book to your Reading List</a><br>
 <% end %>
 
-<% if current_user.id == @book.creator_id %>
+<% if current_user.id == @book.creator_id || current_user.username == "admin"%>
   <p><a href="/books/<%=@book.slug%>/edit">Edit Book</a><br>
 <% end %>
 
