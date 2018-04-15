@@ -1,6 +1,6 @@
-<h3>Users list for My Reading List</h3>
+<h3 class="welcome">Users list for My Reading List</h3>
 
-<ul>
+<ul class="options_lists">
   <% @users.each do |u| %>
     <li><a href="/users/<%=u.slug%>"><%= u.username %></a></li>
   <% end %>
