@@ -1,19 +1,19 @@
 <% if @user.books.empty? %>
-  <h2>Welcome, <%=@user.name%>!</h2>
-  <p>It looks like you don't have any books added to your reading list yet.<p>
+  <h2 class="welcome">Welcome, <%=@user.name%>!</h2>
+  <p class="instructions">It looks like you don't have any books added to your reading list yet.<p>
 <% else %>
-  <h2><%=@user.name%>'s reading list:</h2>
-    <ul>
+  <h2 class="welcome"><%=@user.name%>'s reading list:</h2>
+    <ul class="options_lists">
       <% @user.books.each do |book|%>
       <li><a href="/books/<%=book.slug%>"><%= book.title%></a> by <a href="/authors/<%=book.author.slug%>"><%=book.author.name%></a></li>
       <% end %>
     </ul>
 <% end %>
 
-<p>You can browse the list of all books and add new books <a href="/books">here</a>. You can also browse by <a href="/authors">author</a>.</p>
+<p class="instructions">You can browse the list of all books and add new books <a href="/books">here</a>. You can also browse by <a href="/authors">author</a>.</p>
 
 <% if current_user.username == "admin" %>
-  <a href="/users/<%=@user.slug%>/delete">Remove user from application</a>
+  <a class="action_links" href="/users/<%=@user.slug%>/delete">Remove user from application</a>
 <% end %>
 
 <br><br>
