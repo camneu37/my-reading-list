@@ -24,6 +24,9 @@
         <a href="/users/<%=current_user.slug%>">My Reading List</a>
         <a href="/books">View Book Library</a>
         <a href="/authors">View Authors</a>
+        <% if current_user.username == "admin" %>
+          <a href="/users">View User List</a>
+        <% end %>
         <a href="/logout">Log Out</a>
       </nav>
       <% end %>
