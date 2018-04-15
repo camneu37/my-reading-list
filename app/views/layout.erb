@@ -2,12 +2,26 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Reading List</title>
+    <link href="../../public/stylesheet.css" rel="stylesheet">
   </head>
   <body>
 
     <div class="container">
       <h1 class="site_name">My Reading List</h1>
+
+      <% if logged_in?%>
+      <nav class="site_navigation">
+        <a href="/users/<%=current_user.slug%>">My Reading List</a>
+        <a href="/books">View Book Library</a>
+        <a href="/authors">View Authors</a>
+        <% if current_user.username == "admin" %>
+          <a href="/users">View User List</a>
+        <% end %>
+        <a href="/logout">Log Out</a>
+      </nav>
+      <% end %>
 
       <br>
 
@@ -20,18 +34,6 @@
       <br>
 
     </div>
-
-    <% if logged_in?%>
-    <nav class="site_navigation">
-      <a href="/users/<%=current_user.slug%>">My Reading List</a>
-      <a href="/books">View Book Library</a>
-      <a href="/authors">View Authors</a>
-      <% if current_user.username == "admin" %>
-        <a href="/users">View User List</a>
-      <% end %>
-      <a href="/logout">Log Out</a>
-    </nav>
-    <% end %>
 
   </body>
 </html>
