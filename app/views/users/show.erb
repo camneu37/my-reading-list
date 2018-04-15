@@ -11,3 +11,9 @@
 <% end %>
 
 <p>You can browse the list of all books and add new books <a href="/books">here</a>. You can also browse by <a href="/authors">author</a>.</p>
+
+<% if current_user.username == "admin" %>
+  <a href="/users/:slug/delete">Remove user from application</a>
+<% end %>
+
+<br><br>

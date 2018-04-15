@@ -46,11 +46,22 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     if logged_in?
       @user = User.find_by_slug(params[:slug])
-      if current_user == @user
+      if current_user == @user || current_user.username == "admin"
         erb :'users/show'
       else
         redirect "/users/#{current_user.slug}"
       end
+    else
+      redirect '/'
+    end
+  end
+
+  get '/users/:slug/delete' do
+    if current_user == "admin"
+      @user = User.find_by_slug(params[:slug])
+      @user.destroy
+      flash[:message] = "#{@user.username} has been removed from the application."
+      redirect '/users'
     else
       redirect '/'
     end
