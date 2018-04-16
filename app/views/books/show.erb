@@ -16,6 +16,6 @@
   <% end %>
 
   <% if current_user.username == "admin" %>
-    <a class="btn btn-primary" href="/books/<%=@book.slug%>/delete">Delete book entry from application</a>
+    <a class="btn btn-danger" href="/books/<%=@book.slug%>/delete">Delete book entry from application</a>
   <% end %>
 </div>

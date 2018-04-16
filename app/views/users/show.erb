@@ -11,7 +11,7 @@
 <% end %>
 
 <% if current_user.username == "admin" %>
-  <a class="action_links" href="/users/<%=@user.slug%>/delete">Remove user from application</a>
+  <a class="btn btn-danger" href="/users/<%=@user.slug%>/delete">Remove user from application</a>
 <% end %>
 
 <br><br>
