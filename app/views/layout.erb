@@ -9,32 +9,30 @@
   </head>
   <body>
 
-    <div class="container">
+    <div class="container well">
       <h1 class="jumbotron text-center">My Reading List</h1>
 
       <% if logged_in?%>
       <nav class="navbar navbar-inverse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/users/<%=current_user.slug%>">View Your Reading List</a></li>
-          <li><a href="/books">View Book Library</a></li>
-          <li><a href="/authors">View Authors</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
+          <li><a class="btn" href="/users/<%=current_user.slug%>">View Your Reading List</a></li>
+          <li><a class="btn" href="/books">View Book Library</a></li>
+          <li><a class="btn" href="/authors">View Authors</a></li>
           <% if current_user.username == "admin" %>
-            <li><a href="/users">View User List</a></li>
+            <li><a class="btn" href="/users">View User List</a></li>
           <% end %>
-          <li><a href="/logout">Log Out</a></li>
+          <li><a class="btn" href="/logout">Log Out</a></li>
         </ul>
       </nav>
       <% end %>
 
-      <div class="row text-center">
+      <div class="text-center alert-info">
         <% if flash.has?(:message) %>
           <%= flash[:message] %>
         <% end %>
       </div>
 
-      <div class="row">
+      <div class="page">
         <%= yield %>
       </div>
 
