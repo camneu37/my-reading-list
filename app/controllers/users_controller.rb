@@ -34,6 +34,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/users/#{user.slug}"
     else
+      flash[:message] = "I'm sorry, we could not find an account with the username and password you entered. Please try again."
       redirect '/'
     end
   end

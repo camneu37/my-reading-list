@@ -2,18 +2,20 @@
 <h5 class="byline">By <a href="/authors/<%=@book.author.slug%>"><%= @book.author.name %></a></h5>
 <p class="summary"><%= @book.summary %></p><br>
 
-<% if !@book.user_ids.include?(current_user.id) %>
-  <a class="action_links" href="/books/<%=@book.slug%>/add">Add Book to your Reading List</a><br>
-<% end %>
+<div class="btn-group-vertical">
+  <% if !@book.user_ids.include?(current_user.id) %>
+    <a class="btn btn-primary" href="/books/<%=@book.slug%>/add">Add Book to your Reading List</a></button>
+  <% end %>
 
-<% if current_user.id == @book.creator_id || current_user.username == "admin"%>
-  <a class="action_links" href="/books/<%=@book.slug%>/edit">Edit Book</a><br>
-<% end %>
+  <% if current_user.id == @book.creator_id || current_user.username == "admin"%>
+    <a class="btn btn-primary" href="/books/<%=@book.slug%>/edit">Edit Book</a>
+  <% end %>
 
-<% if current_user.books.include?(@book) %>
-  <a class="action_links" href="/books/<%=@book.slug%>/delete">Delete Book from your Reading List</a><br><br>
-<% end %>
+  <% if current_user.books.include?(@book) %>
+    <a class="btn btn-primary" href="/books/<%=@book.slug%>/delete">Delete Book from your Reading List</a>
+  <% end %>
 
-<% if current_user.username == "admin" %>
-  <a class="action_links" href="/books/<%=@book.slug%>/delete">Delete book entry from application</a><br><br>
-<% end %>
+  <% if current_user.username == "admin" %>
+    <a class="btn btn-primary" href="/books/<%=@book.slug%>/delete">Delete book entry from application</a>
+  <% end %>
+</div>
