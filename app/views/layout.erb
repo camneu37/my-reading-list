@@ -10,29 +10,33 @@
   <body>
 
     <div class="container">
-      <h1 class="site_name">My Reading List</h1>
+      <h1 class="jumbotron text-center">My Reading List</h1>
 
       <% if logged_in?%>
-      <nav class="site_navigation">
-        <a href="/users/<%=current_user.slug%>">My Reading List</a>
-        <a href="/books">View Book Library</a>
-        <a href="/authors">View Authors</a>
-        <% if current_user.username == "admin" %>
-          <a href="/users">View User List</a>
-        <% end %>
-        <a href="/logout">Log Out</a>
+      <nav class="navbar navbar-inverse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/users/<%=current_user.slug%>">View Your Reading List</a></li>
+          <li><a href="/books">View Book Library</a></li>
+          <li><a href="/authors">View Authors</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user.username == "admin" %>
+            <li><a href="/users">View User List</a></li>
+          <% end %>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
       </nav>
       <% end %>
 
-      <br>
+      <div class="row text-center">
+        <% if flash.has?(:message) %>
+          <%= flash[:message] %>
+        <% end %>
+      </div>
 
-      <% if flash.has?(:message) %>
-        <%= flash[:message] %>
-      <% end %>
-
-      <%= yield %>
-
-      <br>
+      <div class="row">
+        <%= yield %>
+      </div>
 
     </div>
 
