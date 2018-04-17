@@ -80,7 +80,7 @@ class BooksController < ApplicationController
     if logged_in? && current_user.username == "admin"
       @book.destroy
       flash[:message] = "#{@book.title} has been deleted from the application."
-      redirect "/users/#{current_user.slug}"
+      redirect "/books"
     elsif logged_in?
       current_user.books.delete(@book)
       flash[:message] = "#{@book.title} has been removed from your Reading List."
