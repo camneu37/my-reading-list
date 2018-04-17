@@ -60,6 +60,8 @@ class BooksController < ApplicationController
     @book = Book.find_by_slug(params[:slug])
     if logged_in? && @book.creator_id == current_user.id
       erb :'/books/edit'
+    elsif current_user.username == "admin"
+      erb :'/books/edit'
     else
       redirect "/books/#{@book.slug}"
     end
