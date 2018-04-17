@@ -20,6 +20,7 @@ class AuthorsController < ApplicationController
     end
   end
 
+  #allows the admin to delete an author entry from the application if there are no books linked to that author
   get '/authors/:slug/delete' do
     @author = Author.find_by_slug(params[:slug])
     if current_user.username == "admin" && @author.books.empty?
