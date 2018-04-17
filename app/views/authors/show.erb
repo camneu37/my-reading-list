@@ -6,4 +6,8 @@
   <%end%>
 </ul>
 
-<a class="btn btn-primary" href="/books/new-from-author/<%=@author.slug%>">Add New Book by <%=@author.name%></a>
+<a class="btn btn-primary" href="/books/new-from-author/<%=@author.slug%>">Add New Book by <%=@author.name%></a><br>
+
+<% if current_user.username == "admin" %>
+  <a class="btn btn-danger" href="/authors/<%=@author.slug%>/delete">Delete author entry from application</a>
+<% end %>
