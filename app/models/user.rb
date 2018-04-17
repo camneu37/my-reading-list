@@ -6,5 +6,10 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :username, :password
 
   extend Slugifiable::ClassMethods
-  include Slugifiable::InstanceMethods
+
+  def slug
+    self.username.downcase.gsub(/[^a-z1-9]+/, '-').chomp('-')
+  end
+
+
 end

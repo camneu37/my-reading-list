@@ -67,12 +67,15 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug/delete' do
+    @user = User.find_by_slug(params[:slug])
     if current_user.username == "admin"
-      @user = User.find_by_slug(params[:slug])
       @user.destroy
-      flash[:message] = "#{@user.username} has been removed from the application."
+      flash[:message] = "#{@user.username}'s account has been deleted."
       redirect '/users'
     else
+      @user.destroy
+      session.clear
+      flash[:message] = "Your account has been deleted. We're sorry to see you go!"
       redirect '/'
     end
   end
