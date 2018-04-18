@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     use Rack::Flash
   end
 
-  #shows the landing page, promps user to log in or sign up
+  #If user not logging in, renders the landing page which prompts user to log in or sign up. Otherwise, redirects the user to their user show page.
   get '/' do
     if !logged_in?
       erb :index
