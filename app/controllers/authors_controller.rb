@@ -27,7 +27,7 @@ class AuthorsController < ApplicationController
       @author.destroy
       flash[:message] = "#{@author.name} has been deleted from the application."
       redirect "/authors"
-    elsif !@author.books.empty?
+    elsif current_user.username == "admin" && !@author.books.empty?
       flash[:message] = "#{@author.name} cannot be deleted from the application as they still have books in the library. All books by the author must be removed before the author can be deleted."
       redirect "/authors/#{@author.slug}"
     else
