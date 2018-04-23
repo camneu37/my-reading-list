@@ -54,7 +54,9 @@ class BooksController < ApplicationController
 
     #If previous condition is false, creates a new book and sets the current user as the creator of the book. Adds the book to the user's reading list (by adding the current user's ID to the books user_ids). Renders the new book's show page and renders a success message.
     else
-      book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id])
+      # book = Book.create(title: params[:book][:title], summary: params[:book][:summary], author_id: author.id, creator_id: session[:user_id])
+      #
+      book = author.books.create(title: params[:book][:title], summary: params[:book][:summary],creator_id: session[:user_id])
       book.update(user_ids: current_user.id)
       flash[:message] = "You've successfully created a new book. It's been added to the main library as well as your personal reading list!"
       redirect "/books/#{book.slug}"
